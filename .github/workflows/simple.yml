@@ -15,4 +15,4 @@ jobs:
       - name: node command
         run: |
           console.log(111)
-        shell: node
+        shell: node {0}
