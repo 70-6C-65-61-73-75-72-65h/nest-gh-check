@@ -12,7 +12,11 @@ jobs:
         run: |
           node -v
           npm -v
-      - name: node command
-        run: |
-          console.log(111)
-        shell: node {0}
+  run-windows-commands:
+    runs-on: windows-latest
+    steps:
+      - name: Directory Powershell
+        run: Get-Location
+      - name: Directory bash
+        run: pwd
+        shell: bash
