@@ -16,6 +16,8 @@ jobs:
   run-gh-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: payload
+        run: echo ${{ github.event.client_payload }}
       - name: List Files
         run: |
           pwd
