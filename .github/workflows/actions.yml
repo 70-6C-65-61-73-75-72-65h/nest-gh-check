@@ -1,16 +1,22 @@
 name: Actions workflow_dispatch
 
 on:
-  repository_dispatch:
-    types: [build]
+  push:
+    branches:
+      # - master
+      - "feature/*" # matches regex with feature/feate
+      - "feature/**" # matches regex with feature/feate and feature/feat/feat
+
+  # repository_dispatch:
+  #   types: [build]
 
   # schedule:
   # # min/hours/dayofthemonth/themonth/dayoftheweek
   #   - cron: "0/5 * * * *"
   #   - cron: "0/6 * * * *"
   # push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  # pull_request:
+  #   types: [closed, assigned, opened, reopened]
 
 jobs:
   run-gh-actions:
