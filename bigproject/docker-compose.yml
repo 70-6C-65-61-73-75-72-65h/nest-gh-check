@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    networks:
+      - my-big-networks
+
+  postgres:
+    container_name: bigproj-postgres
+    image: postgres:latest
+    ports:
+      - '5434:5432'
+    volumes:
+      - /data/bigproj-postgres:/data/postgres
+    networks:
+      - my-big-networks
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=nestjs
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: bigproj-pgadmin
+    depends_on:
+      - postgres
+    ports:
+      - '5433:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - my-big-networks
+    volumes:
+      - /data/bigproj-pgadmin:/root/.pgadmin
+
+networks:
+  my-big-networks:
+    driver: bridge
