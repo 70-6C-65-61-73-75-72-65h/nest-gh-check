@@ -1,50 +1,50 @@
-name: Actions workflow_dispatch
+# name: Actions workflow_dispatch
 
-on:
-  push:
-    # branches-ignore:
-    #   - develop
-    branches:
-      # - master
-      - "feature/*" # matches regex with feature/feate
-      - "feature/**" # matches regex with feature/feate and feature/feat/feat
-      - "!feature/featC"
-    # tags:
-    #   - v1.*
-    # paths:
-    #   - '**.js'
+# on:
+#   push:
+#     # branches-ignore:
+#     #   - develop
+#     branches:
+#       # - master
+#       - "feature/*" # matches regex with feature/feate
+#       - "feature/**" # matches regex with feature/feate and feature/feat/feat
+#       - "!feature/featC"
+#     # tags:
+#     #   - v1.*
+#     # paths:
+#     #   - '**.js'
 
-  # repository_dispatch:
-  #   types: [build]
+#   # repository_dispatch:
+#   #   types: [build]
 
-  # schedule:
-  # # min/hours/dayofthemonth/themonth/dayoftheweek
-  #   - cron: "0/5 * * * *"
-  #   - cron: "0/6 * * * *"
-  # push:
-  # pull_request:
-  #   types: [closed, assigned, opened, reopened]
+#   # schedule:
+#   # # min/hours/dayofthemonth/themonth/dayoftheweek
+#   #   - cron: "0/5 * * * *"
+#   #   - cron: "0/6 * * * *"
+#   # push:
+#   # pull_request:
+#   #   types: [closed, assigned, opened, reopened]
 
-jobs:
-  run-gh-actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: payload
-        run: echo ${{ github.event.client_payload.env }}
-      - name: List Files
-        run: |
-          pwd
-          ls
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: List Files After Checkout
-        run: |
-          pwd
-          ls
-      - name: Simple JS Action
-        id: greet
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: "Max"
-      - name: Log Greeting Time
-        run: echo "${{ steps.greet.outputs.time }}"
+# jobs:
+#   run-gh-actions:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: payload
+#         run: echo ${{ github.event.client_payload.env }}
+#       - name: List Files
+#         run: |
+#           pwd
+#           ls
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#       - name: List Files After Checkout
+#         run: |
+#           pwd
+#           ls
+#       - name: Simple JS Action
+#         id: greet
+#         uses: actions/hello-world-javascript-action@v1
+#         with:
+#           who-to-greet: "Max"
+#       - name: Log Greeting Time
+#         run: echo "${{ steps.greet.outputs.time }}"
