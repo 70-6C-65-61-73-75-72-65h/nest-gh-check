@@ -46,24 +46,27 @@ jobs:
           ls
       # - name: Register a user
       #   run: 'curl -X POST http://localhost:3000/authentication/register -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com","name": "me1", "password": "1111"}'''
-      - name: Get Users
-        run: "curl http://0.0.0.0:3000/api/users"
-        continue-on-error: true
-      - name: Get Users
-        run: "curl 0.0.0.0:3000/api/users"
-        continue-on-error: true
+      # - name: Get Users
+      #   run: "curl http://0.0.0.0:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl 0.0.0.0:3000/api/users"
+      #   continue-on-error: true
       - name: Get Users
         run: "curl http://localhost:3000/api/users"
         continue-on-error: true
-      - name: Get Users
-        run: "curl localhost:3000/api/users"
+      - name: Get DOCS
+        run: "curl http://localhost:3000/api/docs"
         continue-on-error: true
-      - name: Get Users
-        run: "curl http://backend:3000/api/users"
-        continue-on-error: true
-      - name: Get Users
-        run: "curl backend:3000/api/users"
-        continue-on-error: true
+      # - name: Get Users
+      #   run: "curl localhost:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl http://backend:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl backend:3000/api/users"
+      #   continue-on-error: true
       # - name: log node version
       #   run: |
       #     node -v
