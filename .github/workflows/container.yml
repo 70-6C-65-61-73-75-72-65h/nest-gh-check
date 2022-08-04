@@ -10,14 +10,14 @@ jobs:
       backend:
         image: myprojectsthebest/bigproject
         ports:
-          - "3000:3000"
+          - 3000:3000
 
       postgres:
         image: postgres:latest
         ports:
-          - 5434:5432
-        volumes:
-          - /data/bigproj-postgres:/data/postgres
+          - "5434:5432"
+        # volumes:
+        #   - /data/bigproj-postgres:/data/postgres
         # env_file:
         #   - .env
         env:
@@ -31,8 +31,8 @@ jobs:
     #     driver: bridge
     # options: --cpus 4
     steps:
-      - name: Register a user
-        run: 'curl -X POST http://localhost:3000/authentication/register -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com","name": "me1", "password": "1111"}'''
+      # - name: Register a user
+      #   run: 'curl -X POST http://localhost:3000/authentication/register -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com","name": "me1", "password": "1111"}'''
       - name: Get Users
         run: curl http://localhost:3000/api/users
       # - name: log node version
