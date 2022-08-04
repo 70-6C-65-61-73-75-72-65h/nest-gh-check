@@ -57,6 +57,7 @@ jobs:
         continue-on-error: true
       - name: Get Users
         run: "curl localhost:3000/api/users"
+        continue-on-error: true
       - name: Get Users
         run: "curl http://backend:3000/api/users"
         continue-on-error: true
