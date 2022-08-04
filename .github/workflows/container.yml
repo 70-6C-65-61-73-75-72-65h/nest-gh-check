@@ -6,16 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     # container:
     #   image: node:latest
+    # container: node:10.18-jessie
     services:
       backend:
         image: myprojectsthebest/bigproject
         ports:
-          - "3000:3000"
+          - 3000:3000
 
       postgres:
         image: postgres:latest
         ports:
-          - "5434:5432"
+          - 5434:5432
         # volumes:
         #   - /data/bigproj-postgres:/data/postgres
         # env_file:
@@ -24,7 +25,12 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: admin
           POSTGRES_DB: nestjs
-          POSTGRES_PORT: 5432
+          # POSTGRES_PORT: 5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     # networks:
     #   my-big-networks:
@@ -41,10 +47,21 @@ jobs:
       # - name: Register a user
       #   run: 'curl -X POST http://localhost:3000/authentication/register -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com","name": "me1", "password": "1111"}'''
       - name: Get Users
-        run: curl http://0.0.0.0:3000/api/users
+        run: "curl http://0.0.0.0:3000/api/users"
         continue-on-error: true
       - name: Get Users
-        run: curl 0.0.0.0:3000/api/users
+        run: "curl 0.0.0.0:3000/api/users"
+        continue-on-error: true
+      - name: Get Users
+        run: "curl http://localhost:3000/api/users"
+        continue-on-error: true
+      - name: Get Users
+        run: "curl localhost:3000/api/users"
+      - name: Get Users
+        run: "curl http://backend:3000/api/users"
+        continue-on-error: true
+      - name: Get Users
+        run: "curl backend:3000/api/users"
         continue-on-error: true
       # - name: log node version
       #   run: |
