@@ -45,7 +45,7 @@ jobs:
       #     pwd
       #     ls
       - name: Register a user
-        run: 'curl -X POST http://localhost:3000/authentication/register -H "Content-Type: application/json" -d {"email": "me1@gmail.com","name": "me1", "password": "1111"}"'
+        run: 'curl -X POST http://localhost:3000/authentication/register -H "Content-Type: application/json" -d "{"email": "me1@gmail.com","name": "me1", "password": "1111"}"'
         continue-on-error: true
       # - name: Get Users
       #   run: "curl http://0.0.0.0:3000/api/users"
@@ -57,11 +57,12 @@ jobs:
       #   run: "curl http://localhost:3000/api/users"
       #   continue-on-error: true
       - name: Get Users3
-        run: 'curl -X POST http://localhost:3000/authentication/login -H "Content-Type: application/json" -d {"email": "me1@gmail.com", "password": "1111"}"'
+        run: 'curl -X POST http://localhost:3000/authentication/login -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com", "password": "1111"}'''
 
       - name: Get Users3
         if: failure()
-        run: 'curl -X POST http://localhost:3000/authentication/login -H "Content-Type: application/json" -d {"email": "me1@gmail.com", "password": "1111"}"'
+        run: 'curl -X POST http://localhost:3000/authentication/login -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com", "password": "1111"}'''
+
       # - name: Get Posts
       #   run: "curl http://localhost:3000/api/posts"
       #   continue-on-error: true
