@@ -56,6 +56,9 @@ jobs:
       - name: Get Users
         run: "curl http://localhost:3000/api/users"
         continue-on-error: true
+      - name: Get Posts
+        run: "curl http://localhost:3000/api/posts"
+        continue-on-error: true
       - name: Get DOCS
         run: "curl http://localhost:3000/api/docs"
         continue-on-error: true
