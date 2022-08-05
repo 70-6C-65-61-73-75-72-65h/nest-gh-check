@@ -60,9 +60,9 @@ jobs:
       # - name: Get Users3
       #   run: 'curl -X POST http://localhost:3000/authentication/login -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com", "password": "1111"}'''
 
-      # - name: Get Users3
-      #   if: failure()
-      #   run: 'curl -X POST http://localhost:3000/authentication/login -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com", "password": "1111"}'''
+      - name: LOGIN
+        if: failure()
+        run:  "curl -X POST http://localhost:3000/authentication/login  -H 'Content-Type: application/json' -d ' {\"email\": \"me1@gmail.com\", \"password\": \"1111\"}'"
 
       # - name: Get Posts
       #   run: "curl http://localhost:3000/api/posts"
