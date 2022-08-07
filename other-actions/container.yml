@@ -1,0 +1,122 @@
+name: Container
+on: push
+
+jobs:
+  docker-steps:
+    runs-on: ubuntu-latest
+    # container:
+    #   image: node:latest
+    # container: node:10.18-jessie
+    services:
+      backend:
+        image: myprojectsthebest/bigproject
+        ports:
+          - 3000:3000
+
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5434:5432
+        # volumes:
+        #   - /data/bigproj-postgres:/data/postgres
+        # env_file:
+        #   - .env
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: nestjs
+          POSTGRES_PORT: 5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # networks:
+    #   my-big-networks:
+    #     driver: bridge
+
+    # options: --cpus 4
+    steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      # - name: List Files After Checkout
+      #   run: |
+      #     pwd
+      #     ls
+      - name: Register a user
+        run: "curl -X POST http://localhost:3000/authentication/register  -H 'Content-Type: application/json' -d ' {\"email\": \"me1@gmail.com\",\"name\": \"me1\", \"password\": \"1111\"}'"
+        continue-on-error: true
+
+      # - name: Get Users
+      #   run: "curl http://0.0.0.0:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: curl 0.0.0.0:3000/api/users
+      #   continue-on-error: true
+      # # - name: Get Users2
+      # #   run: "curl http://localhost:3000/api/users"
+      # #   continue-on-error: true
+      # - name: Get Users3
+      #   run: 'curl -X POST http://localhost:3000/authentication/login -H ''Content-Type: application/json'' -d ''{"email": "me1@gmail.com", "password": "1111"}'''
+
+      - name: LOGIN
+        # if: failure()
+        run:  "curl -X POST http://localhost:3000/authentication/login  -H 'Content-Type: application/json' -d ' {\"email\": \"me1@gmail.com\", \"password\": \"1111\"}'"
+
+      # - name: Get Posts
+      #   run: "curl http://localhost:3000/api/posts"
+      #   continue-on-error: true
+      # - name: Get DOCS
+      #   run: "curl http://localhost:3000/api/docs"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl localhost:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl http://backend:3000/api/users"
+      #   continue-on-error: true
+      # - name: Get Users
+      #   run: "curl backend:3000/api/users"
+      #   continue-on-error: true
+      # - name: log node version
+      #   run: |
+      #     node -v
+      #     cat /etc/os-release
+      # - name: Step with docker
+      #   uses: docker://node:16.16.0-alpine3.16
+      #   with:
+      #     entrypoint: "/bin/echo"
+      #     args: "Hello World"
+      # - name: Log node version
+      #   uses: docker://node:16.16.0-alpine3.16
+      #   with:
+      #     entrypoint: /usr/local/bin/node
+      #     args: -v
+      # - uses: actions/checkout@v1
+      # - name: Run a script
+      #   uses: docker://node:16.16.0-alpine3.16
+      #   with:
+      #     entrypoint: ./script.sh
+      #     args: "Some string"
+      # - name: send a slack message
+      #   uses: docker://technosophos/slack-notify
+      #   env:
+      #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      #     SLACK_MESSAGE: "Hello slack"
+  # node-docker:
+  #   runs-on: ubuntu-latest
+  #   services:
+  #     app:
+  #       image: alialaa17/node-api
+  #       ports:
+  #         - 3001:3000
+  #     mongo:
+  #       image: mongo
+  #       ports:
+  #         - "27017:27017"
+  #   steps:
+  #     - name: Post a user
+  #       run: 'curl -X POST http://localhost:3001/api/user -H ''Content-Type: application/json'' -d ''{"username": "hello","address": "dwded"}'''
+  #     - name: Get Users
+  #       run: curl http://localhost:3001/api/users
