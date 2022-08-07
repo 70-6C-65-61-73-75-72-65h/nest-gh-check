@@ -13,6 +13,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "16.x"
+      - run: ls -a
       - run: cd test
       - run: npm ci
       - run: npm run format:check
