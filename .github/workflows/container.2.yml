@@ -1,0 +1,21 @@
+name: Docker Action
+
+on: push
+
+jobs:
+  docker-steps: 
+    runs-on: ubuntu-latest
+    container: 
+      image: node:latest
+    steps: 
+      - name: step with docker
+        uses: docker://node:16.16.0-alpine3.16
+        with:  
+          entrypoint: /usr/local/bin/node
+          args: '-v'
+      - uses: actions/checkout@v3
+      - name: step with script
+        uses: docker://node:16.16.0-alpine3.16
+        with:  
+          entrypoint: ./script.sh
+          args: "string"
