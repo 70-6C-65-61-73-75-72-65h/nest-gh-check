@@ -1,0 +1,34 @@
+{
+  "name": "nest-gha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "newfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/70-6C-65-61-73-75-72-65h/nest-gh-check.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/70-6C-65-61-73-75-72-65h/nest-gh-check/issues"
+  },
+  "homepage": "https://github.com/70-6C-65-61-73-75-72-65h/nest-gh-check#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1"
+  }
+}
+
