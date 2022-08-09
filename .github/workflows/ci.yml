@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
     defaults:
       run:
         working-directory: ./test
@@ -66,9 +69,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Staging
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/head/develop'
         run: npx surge --project ./build --domain lucky-respect-01.surge.sh
+
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        run: npx surge --project ./build --domain  materialistic-direction.surge.sh
+      - name: Upload Coverage Reports
+        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        run: npx codecov
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
