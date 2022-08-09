@@ -60,24 +60,24 @@ jobs:
           name: build
           path: test/build
       - name: ZIP Assets
-        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           zip -r build.zip ./build
           zip -r coverage.zip ./coverage
       - name: Create a Release
-        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Staging
-        if: github.event_name == 'push' && github.ref == 'refs/head/develop'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain lucky-respect-01.surge.sh
 
       - name: Deploy to Production
-        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx surge --project ./build --domain  materialistic-direction.surge.sh
       - name: Upload Coverage Reports
-        if: github.event_name == 'push' && github.ref == 'refs/head/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
