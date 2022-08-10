@@ -5,8 +5,8 @@ on:
     branches: [develop, master]
   push:
     branches:
-      - "develop"
-      - "master"
+      - 'develop'
+      - 'master'
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
       - name: Use NodeJs
         uses: actions/setup-node@v2
         with:
-          node-version: "16.x"
+          node-version: '16.x'
 
       - name: Get npm cache directory
         id: npm-cache-dir
@@ -68,7 +68,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
       - name: Deploy to Staging
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain lucky-respect-01.surge.sh
@@ -81,4 +81,3 @@ jobs:
         run: npx codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
