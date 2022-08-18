@@ -25,6 +25,10 @@ jobs:
       - run: npm ci
       - run: npx ncc build .github/actions/hello/index.js -o .github/actions/hello/dist
       - run: npx ncc build .github/actions/issue/index.js -o .github/actions/issue/dist
+      - run: |
+          cd .github/actions/issue/dist
+          pwd
+          ls -a
 
   testing-action:
     needs: build-testing-action
