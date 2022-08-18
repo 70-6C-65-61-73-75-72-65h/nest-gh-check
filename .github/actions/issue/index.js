@@ -13,7 +13,7 @@ const github = require('@actions/github');
     //   core.warning(`Hello ${name}`);
 
     //   const time = new Date();
-    const octokit = new github.GitHub(token);
+    const octokit = new github.getOctokit(token);
 
     const response = await octokit.issues.create({
       // owner: github.context.repo.owner,
