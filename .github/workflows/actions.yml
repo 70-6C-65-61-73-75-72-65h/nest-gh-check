@@ -7,6 +7,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+      - run: npm ci
       - run: npx ncc build .github/actions/hello/index.js -o .github/actions/hello/dist
   testing-action:
     needs: build-testing-action
