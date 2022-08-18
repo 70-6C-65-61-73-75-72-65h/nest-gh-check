@@ -24,14 +24,13 @@ jobs:
 
       - run: npm ci
       - run: npx ncc build .github/actions/hello/index.js -o .github/actions/hello/dist
-      - run: npm ci
       - run: npx ncc build .github/actions/issue/index.js -o .github/actions/issue/dist
 
   testing-action:
     needs: build-testing-action
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/issue
         id: issue
         with:
