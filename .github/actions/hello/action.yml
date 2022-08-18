@@ -1,0 +1,14 @@
+name: Hello World
+author: Max
+description: Some desc
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: Max
+outputs:
+  time:
+    description: 'The greeting time'
+runs:
+  using: 'node16'
+  main: 'index.js'
