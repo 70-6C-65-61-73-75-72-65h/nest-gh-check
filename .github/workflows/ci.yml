@@ -81,6 +81,8 @@ jobs:
         run: npx codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Print Assignee
+        run: echo ${{ github.event.pull_request.user.login }}
       - name: Open Issue
         if: failure() && github.event_name == 'push'
         run: |
