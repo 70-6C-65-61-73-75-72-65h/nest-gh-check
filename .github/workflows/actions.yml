@@ -77,3 +77,10 @@ jobs:
       - run: |
           echo "Time: ${{steps.hello.outputs.time}}"
           echo $Hello
+      - uses: ./.github/actions/hello-docker
+        id: hello-docker
+        with:
+          who-to-greet: 'World'
+      - run: |
+          echo "Time: ${{steps.hello-docker.outputs.time}}"
+          echo $Hello
