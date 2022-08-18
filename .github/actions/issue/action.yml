@@ -1,0 +1,22 @@
+name: Open GH Issue
+author: Max
+description: Open a GH Issue
+inputs:
+  token:
+    description: 'GH token'
+    required: true
+  title:
+    description: 'Issue title'
+    required: true
+  body:
+    description: 'Issue body'
+    required: false
+  assignees:
+    description: 'Issue assignees'
+    required: false
+outputs:
+  issue:
+    description: 'The issue obj as a json string'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
