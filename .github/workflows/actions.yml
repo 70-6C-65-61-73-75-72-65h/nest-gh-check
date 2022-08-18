@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          cd .github/actions/dist
+          cd .github/actions
           pwd
           ls -a
       - uses: ./.github/actions/issue
