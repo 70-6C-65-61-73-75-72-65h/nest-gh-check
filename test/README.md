@@ -1,4 +1,4 @@
-![](https://https://github.com/70-6C-65-61-73-75-72-65h/nest-gh-check/workflows/CI/badge.svg?branch=develop&event=push)
+![](https://github.com/70-6C-65-61-73-75-72-65h/nest-gh-check/workflows/CI/badge.svg?branch=develop&event=push)
 
 # Getting Started with Create React App
 
