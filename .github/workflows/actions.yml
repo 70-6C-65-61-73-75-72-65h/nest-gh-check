@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: .github/actions/issue
+      - uses: ./.github/actions/issue
         id: issue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,12 +40,13 @@ jobs:
           assignees: |
             ${{ github.event.pull_request.user.login }}
             Maksym-Ulshyn
-      - uses: .github/actions/hello
+      - run: |
+          echo Issue output
+          echo "Time: ${{steps.issue.outputs.issue}}"
+      - uses: ./.github/actions/hello
         id: hello
         with:
           who-to-greet: 'World'
       - run: |
           echo "Time: ${{steps.hello.outputs.time}}"
           echo $Hello
-          echo Issue output
-          echo "Time: ${{steps.issue.outputs.issue}}"
